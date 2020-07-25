@@ -1,0 +1,16 @@
+{
+  "name": "kubeecms/kcms-git",
+  "description": "Deployment of themes and plugins directly from GitHub",
+  "keywords": ["kubee", "kcms", "kcms-git"],
+  "homepage": "https://github.com/KubeeCMS/KCMS-Git/",
+  "authors": [
+    {
+      "name": "Romeo Covaci",
+      "homepage": "https://github.com/romeocovaci"
+    }
+  ],
+  "type": "wordpress-plugin",
+  "require": {
+    "php": ">=7.2"
+  }
+}

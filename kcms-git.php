@@ -16,7 +16,7 @@
  * Plugin Name: KCMS Git
  * Plugin URI: https://github.com/kubeecms/kcms-git/
  * Description: Deployment of themes and plugins directly from GitHub.
- * Version: 3.0.3
+ * Version: 3.0.8
  * Author: Kubee
  * Author URI: https://github.com/kubeecms/
  * License: GNU GENERAL PUBLIC LICENSE

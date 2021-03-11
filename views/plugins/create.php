@@ -37,7 +37,7 @@ if ( ! defined('WPINC')) {
                     <label>Repository branch</label>
                 </th>
                 <td>
-                    <input name="wppusher[branch]" type="text" class="regular-text" placeholder="master" value="<?php echo (isset($_POST['wppusher']['branch'])) ? $_POST['wppusher']['branch'] : ''; ?>">
+                    <input name="wppusher[branch]" type="text" class="regular-text" placeholder="master, main, development etc." value="<?php echo (isset($_POST['wppusher']['branch'])) ? $_POST['wppusher']['branch'] : ''; ?>">
                     <p class="description">Defaults to <strong>master</strong> if left blank</p>
                 </td>
             </tr>

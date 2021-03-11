@@ -10,6 +10,7 @@ include_once(ABSPATH . 'wp-admin/includes/misc.php');
 use Plugin_Upgrader;
 use Pusher\Log\Logger;
 use Pusher\Plugin;
+use stdClass;
 
 class PluginUpgrader extends Plugin_Upgrader
 {
@@ -68,7 +69,7 @@ class PluginUpgrader extends Plugin_Upgrader
         global $wp_filesystem;
 
         if ( ! $wp_filesystem->move($source, $newSource, true))
-            return new \WP_Error();
+            return new \WP_Error('wppusher_subdirectory', "WP Pusher couldn't find subdirectory in repository.");
 
         return $newSource;
     }
@@ -78,6 +79,12 @@ class PluginUpgrader extends Plugin_Upgrader
         $zipUrl = apply_filters('wppusher_get_zip_url', $this->plugin->repository->getZipUrl(), $this->plugin);
 
         $options = array('package' => $zipUrl);
+
+        // If $transient doesn't exist - create it
+        if (! $transient) {
+            $transient = new stdClass;
+        };
+
         $transient->response[$this->plugin->file] = (object) $options;
 
         return $transient;

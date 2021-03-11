@@ -51,10 +51,10 @@ class Pusher implements Container
     public function adminMenu()
     {
         add_menu_page($this->getName(), $this->getName(), 'manage_options', 'wppusher', array($this->make('Pusher\Dashboard'), 'getIndex'), 'dashicons-marker');
-        add_submenu_page('wppusher', 'WP Pusher Settings', 'Settings', 'manage_options', 'wppusher', array($this->make('Pusher\Dashboard'), 'getIndex'), 'dashicons-marker');
         add_submenu_page('wppusher', 'Install Plugin', 'Install Plugin', 'manage_options', 'wppusher-plugins-create', array($this->make('Pusher\Dashboard'), 'getPluginsCreate'));
+        add_submenu_page('wppusher', 'WP Pusher Plugins', 'Plugins', 'manage_options', 'wppusher-plugins', array($this->make('Pusher\Dashboard'), 'getPlugins'));
         add_submenu_page('wppusher', 'Install Theme', 'Install Theme', 'manage_options', 'wppusher-themes-create', array($this->make('Pusher\Dashboard'), 'getThemesCreate'));
-        add_submenu_page('wppusher', 'WP Pusher Repositories', 'Repositories', 'manage_options', 'wppusher-repositories', array($this->make('Pusher\Dashboard'), 'getRepositories'));
+        add_submenu_page('wppusher', 'WP Pusher Themes', 'Themes', 'manage_options', 'wppusher-themes', array($this->make('Pusher\Dashboard'), 'getThemes'));
     }
 
     public function getName()
@@ -282,17 +282,18 @@ class Pusher implements Container
         $newInstanceParams = array();
 
         foreach ($params as $param) {
-            // @todo Here we should probably perform a bunch of checks, such as:
-            // isArray(), isCallable(), isDefaultValueAvailable()
-            // isOptional() etc.
+            // Fallback for PHP 5
+            $method = method_exists($param, 'getType')
+                ? 'getType'
+                : 'getClass';
 
-            if (is_null($param->getClass())) {
+            if (is_null($param->$method())) {
                 $newInstanceParams[] = null;
                 continue;
             }
 
             $newInstanceParams[] = $this->make(
-                $param->getClass()->getName()
+                $param->$method()->getName()
             );
         }
 

@@ -11,6 +11,7 @@ use Pusher\Dashboard;
 use Pusher\Log\Logger;
 use Theme_Upgrader;
 use Pusher\Theme;
+use stdClass;
 
 class ThemeUpgrader extends Theme_Upgrader
 {
@@ -57,7 +58,7 @@ class ThemeUpgrader extends Theme_Upgrader
         global $wp_filesystem;
 
         if ( ! $wp_filesystem->move($source, $newSource, true))
-            return new \WP_Error();
+            return new \WP_Error('wppusher_subdirectory', "WP Pusher couldn't find subdirectory in repository.");
 
         return $newSource;
     }
@@ -65,6 +66,12 @@ class ThemeUpgrader extends Theme_Upgrader
     public function preSiteTransientUpdateThemesFilter($transient)
     {
         $options = array('package' => $this->theme->repository->getZipUrl());
+
+        // If $transient doesn't exist - create it
+        if (! $transient) {
+            $transient = new stdClass;
+        };
+
         $transient->response[$this->theme->stylesheet] = $options;
 
         return $transient;

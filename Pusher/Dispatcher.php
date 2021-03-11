@@ -84,11 +84,6 @@ class Dispatcher
                     $this->dashboard->postUnlinkTheme($request);
                     break;
 
-                case 'update-repository':
-                    check_admin_referer('update-repository');
-                    $this->dashboard->postUpdateRepository($request);
-                    break;
-
                 default:
                     break;
             }

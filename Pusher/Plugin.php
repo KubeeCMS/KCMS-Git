@@ -23,7 +23,6 @@ class Plugin implements Package
     protected $pushToDeploy;
     protected $host;
     protected $subdirectory;
-    protected $type = 'plugin';
 
     public static function fromWpArray($file, array $array)
     {

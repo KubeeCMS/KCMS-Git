@@ -20,7 +20,14 @@ class ThemeUpgraderSkin extends Theme_Upgrader_Skin
 
         // Optimise error messages
         if ($this->error and $this->error->get_error_code() === 'download_failed') {
-            $this->error = new WP_Error('download_failed', $this->error->get_error_message() . ' Make sure repository handle is correct and that you have a valid token.<br>If you are using GitHub, try obtaining <a href="admin.php?page=wppusher&tab=github">a new token</a>.');
+            $errorMsg = '';
+
+            if (isset($_POST['wppusher']['type']) && $_POST['wppusher']['type'] === 'gh') {
+                $errorMsg .= '<p><strong>Common issues when using GitHub:</strong></p>';
+                $errorMsg .= '<ul style="list-style: disc; padding-left: 1.2rem;"><li>The Git branch doesn\'t exist - GitHub now defaults to <code>main</code> instead of <code>master</code>.</li><li>Token has been invalidated, try obtaining <a href="admin.php?page=wppusher&tab=github">a new token</a>.</li><li>WP Pusher doesn\'t have access to the GitHub org - grant it <a href="https://github.com/settings/connections/applications/c48c02cdb49a43bb36b8" target="_blank">here</a> and issue <a href="admin.php?page=wppusher&tab=github">a new token</a>.</li><li>Repository handle is incorrect.</li></ul>';
+            }
+
+            $this->error = new WP_Error('download_failed', $this->error->get_error_message() . $errorMsg);
         }
 
         // Probably because Bitbucket token has been invalidated

@@ -9,7 +9,7 @@
  * that starts the plugin.
  *
  * @link              https://github.com/kubeecms/kcms-git/
- * @since             3.0.3
+ * @since             3.0.8
  * @package           kcms-git
  *
  * @wordpress-plugin
@@ -17,11 +17,11 @@
  * Plugin URI: https://github.com/kubeecms/kcms-git/
  * Description: Deployment of themes and plugins directly from GitHub.
  * Version: 3.0.3
- * Author: WP Pusher
+ * Author: Kubee
  * Author URI: https://github.com/kubeecms/
  * License: GNU GENERAL PUBLIC LICENSE
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       kcmspush
+ * Text Domain:       kcms-git
  * Domain Path:       /languages
  */
 

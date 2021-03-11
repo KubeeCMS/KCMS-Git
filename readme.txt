@@ -2,17 +2,17 @@
 Plugin Name: KCMS Push
 Plugin URI: https://github.com/kubeeapp/kcms-push
 Description: Deployment of themes and extensions directly from GitHub.
-Version: 3.0.2
-Author: kubeeapp
-Author URI: https://github.com/kubeeapp/
+Version: 3.0.8
+Author: kubee
+Author URI: https://github.com/kubeecms/
 License: GNU GENERAL PUBLIC LICENSE
 License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
-Text Domain:       kcmspush
+Text Domain:       kcms-git
 Domain Path:       /languages
 Tags: git, deploy, deployment, github, workflow
 Requires at least: 5.3
-Tested up to: 5.3
-Stable tag: 3.0.2
+Tested up to: 5.7
+Stable tag: 3.0.8
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

@@ -133,12 +133,6 @@ class Dashboard
         $this->execute($command);
     }
 
-    public function postUpdateRepository($request)
-    {
-        $command = $request['type'] === 'plugin' ? new UpdatePlugin($request) : new UpdateTheme($request);
-        $this->execute($command);
-    }
-
     public function getPluginsCreate()
     {
         // Run cleanup of orphan packages
@@ -214,16 +208,6 @@ class Dashboard
     {
         $command = new UnlinkTheme($request);
         $this->execute($command);
-    }
-
-    public function getRepositories()
-    {
-        $data['repositories'] = array_merge(
-            $this->themes->allPusherThemes(), 
-            $this->plugins->allPusherPlugins()
-        );
-
-        return $this->render('repositories/index', $data);
     }
 
     public function addMessage($message)
